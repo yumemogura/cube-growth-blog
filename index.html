@@ -106,7 +106,16 @@
     <!-- 日記 -->
     <section class="panel" id="panel-diary">
       <h2>日記</h2>
-      <div class="list">
+      <div class="cal">
+        <div class="cal-head">
+          <button type="button" id="cal-prev" aria-label="前の月">‹</button>
+          <div class="cal-title" id="cal-title"></div>
+          <button type="button" id="cal-next" aria-label="次の月">›</button>
+        </div>
+        <div class="cal-grid" id="cal-grid"></div>
+        <p class="note">オレンジの日付が記事のある日です。タップするとその日の記事が開きます。</p>
+      </div>
+      <div class="list" style="margin-top:16px">
         <a class="card" href="posts/2026-11-10.html">
           <div class="date">2026-11-10</div>
           <h3>3-styleのドリルを始めた</h3>
@@ -167,6 +176,11 @@
           <h3>東京くるくる会</h3>
           <p>参加している東京のスピードキューブの集まりです。WCA大会「Tokyo 2026」の主催です。</p>
         </a>
+        <a class="card" href="https://www.youtube.com/@yumecubebeats" target="_blank" rel="noopener">
+          <div class="date">YouTube</div>
+          <h3>Yumemogura's Cube Beats Lab.</h3>
+          <p>自分のYouTubeチャンネルです。キューブと音楽の融合をテーマに、練習や大会の動画を投稿しています。</p>
+        </a>
       </div>
     </section>
 
@@ -184,6 +198,37 @@
   tabs.forEach(function(t){ t.addEventListener('click', function(){ show(t.dataset.tab); history.replaceState(null,'','#'+t.dataset.tab); }); });
   var h = (location.hash||'').replace('#','');
   if(['records','diary','software','links'].indexOf(h) >= 0) show(h);
+
+  /* diary calendar */
+  var POSTS = {
+    '2026-11-08': 'posts/2026-11-08.html',
+    '2026-11-09': 'posts/2026-11-09.html',
+    '2026-11-10': 'posts/2026-11-10.html'
+  };
+  var calView = { y: 2026, m: 10 }; /* 0-based month: 2026年11月 */
+  var DOW = ['日','月','火','水','木','金','土'];
+  function pad(n){ return (n<10?'0':'')+n; }
+  function renderCal(){
+    var title = document.getElementById('cal-title');
+    var grid = document.getElementById('cal-grid');
+    if(!title || !grid) return;
+    title.textContent = calView.y + '年' + (calView.m+1) + '月';
+    var html = '';
+    DOW.forEach(function(d){ html += '<div class="cal-dow">'+d+'</div>'; });
+    var first = new Date(calView.y, calView.m, 1).getDay();
+    var days = new Date(calView.y, calView.m+1, 0).getDate();
+    for(var i=0;i<first;i++) html += '<div class="cal-cell empty"></div>';
+    for(var d=1; d<=days; d++){
+      var key = calView.y + '-' + pad(calView.m+1) + '-' + pad(d);
+      if(POSTS[key]) html += '<a class="cal-cell has-post" href="'+POSTS[key]+'">'+d+'</a>';
+      else html += '<div class="cal-cell">'+d+'</div>';
+    }
+    grid.innerHTML = html;
+  }
+  var prev = document.getElementById('cal-prev'), next = document.getElementById('cal-next');
+  if(prev) prev.addEventListener('click', function(){ calView.m--; if(calView.m<0){calView.m=11;calView.y--;} renderCal(); });
+  if(next) next.addEventListener('click', function(){ calView.m++; if(calView.m>11){calView.m=0;calView.y++;} renderCal(); });
+  renderCal();
 })();
 </script>
 </body>
