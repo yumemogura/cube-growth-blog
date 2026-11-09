@@ -41,6 +41,8 @@ a{color:inherit}
 .stat .lbl{color:var(--muted);font-size:.8rem}
 
 /* tables */
+.table-scroll{overflow-x:auto}
+th:nth-child(6),td:nth-child(6){border-left:2px solid var(--line)}
 table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;font-size:.93rem}
 th,td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
 th{background:#fafbfc;color:var(--ink-soft);font-size:.8rem}
