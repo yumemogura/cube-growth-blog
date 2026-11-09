@@ -79,6 +79,8 @@ table.pb tr:last-child td{border-bottom:none}
 .goalrow .now{margin-left:auto;color:var(--ink-soft);font-size:.9rem}
 .goalrow .now b{color:var(--ink)}
 .goalrow .gap{color:var(--muted);font-size:.83rem}
+.goalrow .vals{display:flex;flex-wrap:wrap;gap:4px 20px;margin-top:3px;color:var(--ink-soft);font-size:.92rem}
+.goalrow .vals b{color:var(--ink)}
 .bar{height:8px;background:#efedea;border-radius:99px;margin-top:9px;overflow:hidden}
 .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),#f2b134);border-radius:99px}
 .bar.green i{background:linear-gradient(90deg,var(--green),#7bc96f)}
