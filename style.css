@@ -52,6 +52,14 @@ td:first-child,th:first-child{text-align:left;font-weight:700}
 tbody tr:last-child td{border-bottom:0}
 td.hl{color:var(--brand);font-weight:800}
 
+/* charts */
+.chart-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;margin-bottom:12px}
+.chart-card h3{margin:0 0 4px;font-size:1rem}
+.chart-card svg{width:100%;height:auto;display:block}
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:6px}
+.legend .lg{color:var(--ink-soft);font-size:.82rem;display:inline-flex;align-items:center;gap:6px}
+.legend .lg i{width:10px;height:10px;border-radius:3px;display:inline-block}
+
 /* goals */
 .goalrows{display:flex;flex-direction:column;gap:10px}
 .goalrow{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:13px 16px}
