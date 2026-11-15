@@ -168,3 +168,4 @@ footer.site .who{font-weight:700;color:var(--ink-soft)}
 
 /* 3-style 習得済みの行 */
 tr.mastered td { background: #e6f4ea; }
+.ccount{margin-top:6px;font-size:.82rem;font-weight:700;color:#828ca0}

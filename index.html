@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ゆめもぐらキュー部ログ | 継続は力なり</title>
 <meta name="description" content="ゆめもぐらのスピードキューブ成長ブログ。練習記録と2027年の目標への道のり。">
-<link rel="stylesheet" href="style.css?v=20261115c">
+<link rel="stylesheet" href="style.css?v=20261116a">
 <script data-goatcounter="https://takahashi-cube.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
@@ -1113,12 +1113,29 @@
       var lh = '';
       if(keys.length){
         lh = '<p class="note">' + calView.y + '年' + (calView.m+1) + '月の記事（' + keys.length + '件）</p>';
-        keys.forEach(function(k){ var c = CARDS[k]; lh += '<a class="card" href="posts/' + k + '.html"><div class="date">' + k + '</div><h3>' + c.t + '</h3><p>' + c.d + '</p></a>'; });
+        keys.forEach(function(k){ var c = CARDS[k]; lh += '<a class="card" href="posts/' + k + '.html"><div class="date">' + k + '</div><h3>' + c.t + '</h3><p>' + c.d + '</p><div class="ccount" data-cpath="/cube-growth-blog/posts/' + k + '.html" style="display:none">💬 <span></span></div></a>'; });
       } else {
         lh = '<p class="note">' + calView.y + '年' + (calView.m+1) + '月の記事はまだありません。</p>';
       }
       list.innerHTML = lh;
+      loadCounts(list);
     }
+  }
+  function loadCounts(scope){
+    var els = scope.querySelectorAll('[data-cpath]');
+    if(!els.length) return;
+    var paths = Array.prototype.map.call(els, function(e){ return e.getAttribute('data-cpath'); });
+    fetch('https://yumemogura-waline.vercel.app/api/comment?type=count&url=' + paths.map(encodeURIComponent).join(','))
+      .then(function(r){ return r.json(); })
+      .then(function(j){
+        if(!j || !j.data) return;
+        var counts = Array.isArray(j.data) ? j.data : [j.data];
+        els.forEach(function(e, i){
+          var n = counts[i] || 0;
+          if(n > 0){ e.querySelector('span').textContent = n; e.style.display = ''; }
+        });
+      })
+      .catch(function(){});
   }
   var prev = document.getElementById('cal-prev'), next = document.getElementById('cal-next');
   if(prev) prev.addEventListener('click', function(){ calView.m--; if(calView.m<0){calView.m=11;calView.y--;} renderCal(); });

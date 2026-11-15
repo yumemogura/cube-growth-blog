@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>2024年12月の練習日記 | ゆめもぐらキュー部ログ</title>
 <meta name="description" content="2024年12月の練習日記の一覧です。">
-<link rel="stylesheet" href="style.css?v=20261115c">
+<link rel="stylesheet" href="style.css?v=20261116a">
 <script data-goatcounter="https://takahashi-cube.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
@@ -182,5 +182,28 @@
 <footer class="site">
   <div class="wrap">© ゆめもぐらキュー部ログ</div>
 </footer>
+<script>
+(function(){
+  var cards = document.querySelectorAll('a.card[href^="posts/"]');
+  if(!cards.length) return;
+  var paths = Array.prototype.map.call(cards, function(a){ return '/cube-growth-blog/' + a.getAttribute('href'); });
+  fetch('https://yumemogura-waline.vercel.app/api/comment?type=count&url=' + paths.map(encodeURIComponent).join(','))
+    .then(function(r){ return r.json(); })
+    .then(function(j){
+      if(!j || !j.data) return;
+      var counts = Array.isArray(j.data) ? j.data : [j.data];
+      cards.forEach(function(a, i){
+        var n = counts[i] || 0;
+        if(n > 0){
+          var d = document.createElement('div');
+          d.className = 'ccount';
+          d.textContent = '\uD83D\uDCAC ' + n;
+          a.appendChild(d);
+        }
+      });
+    })
+    .catch(function(){});
+})();
+</script>
 </body>
 </html>
