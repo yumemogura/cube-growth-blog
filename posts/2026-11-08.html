@@ -6,6 +6,7 @@
 <title>Tokyo 2026 | ゆめもぐらキュー部</title>
 <meta name="description" content="家族3人でWCA公式大会「Tokyo 2026」に出場。4×4×4の単発でPBを更新した。">
 <link rel="stylesheet" href="../style.css?v=20261110e">
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css">
 </head>
 <body>
 <header class="site">
@@ -42,20 +43,10 @@
   </article>
   <section class="comments">
     <h2>コメント</h2>
-    <script src="https://giscus.app/client.js"
-        data-repo="yumemogura/cube-growth-blog"
-        data-repo-id="R_kgDOVosUDA"
-        data-category="Announcements"
-        data-category-id="DIC_kwDOVosUDM4DKxCe"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="preferred_color_scheme"
-        data-lang="ja"
-        crossorigin="anonymous"
-        async>
+    <div id="waline"></div>
+    <script type="module">
+      import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
+      init({ el: '#waline', serverURL: 'https://yumemogura-waline.vercel.app', lang: 'jp', login: 'disable' });
     </script>
   </section>
   <div class="pager">
