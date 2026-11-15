@@ -165,3 +165,6 @@ footer.site .who{font-weight:700;color:var(--ink-soft)}
 .monthly table{font-size:.9rem}
 .monthly td,.monthly th{text-align:right;white-space:nowrap}
 .monthly td:first-child,.monthly th:first-child{text-align:left}
+
+/* 3-style 習得済みの行 */
+tr.mastered td { background: #e6f4ea; }
