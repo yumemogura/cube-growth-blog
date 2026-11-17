@@ -166,6 +166,8 @@ footer.site .who{font-weight:700;color:var(--ink-soft)}
 .monthly td,.monthly th{text-align:right;white-space:nowrap}
 .monthly td:first-child,.monthly th:first-child{text-align:left}
 
-/* 3-style 習得済みの行 */
-tr.mastered td { background: #e6f4ea; }
+/* 3-style 進捗の行（着手→一次合格→習得済みで濃くなる） */
+tr.started td { background: #fdf3d0; }
+tr.passed td { background: #b7dfb9; }
+tr.mastered td { background: #57a65a; }
 .ccount{margin-top:6px;font-size:.82rem;font-weight:700;color:#828ca0}
