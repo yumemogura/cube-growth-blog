@@ -172,3 +172,4 @@ tr.passed td { background: #b7dfb9; }
 tr.mastered td { background: #57a65a; }
 .ccount{margin-top:6px;font-size:.82rem;font-weight:700;color:#828ca0}
 td.pb{background:#ffe9a8;font-weight:700}
+td.cur{color:#e03131;font-weight:800}
